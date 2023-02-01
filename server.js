@@ -6,8 +6,8 @@ const formatMessage = require('./messages');
 const { userJoin, getCurrentUser, userLeave, getRoomUsers } = require('./users');
 
 const app = express();
-// const server = http.createServer(app);
-// const io = socketio(server);
+const server = http.createServer(app);
+const io = socketio(server);
 
 // Set static folder
 app.use(express.static(path.join(__dirname, '../CHATCODE')));
@@ -56,6 +56,6 @@ io.on('connection', socket => {
     });
 });
 
-// const PORT = 3000 || process.env.PORT;
+const PORT = 3000 || process.env.PORT;
 
-// server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
